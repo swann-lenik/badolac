@@ -1,0 +1,18 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25 nov. 2014, 15:47:14
+    Author     : swann
+*/
+
+body { background-color: #EEE; }
+
+div.container { width: 1100px; margin: auto; height: auto; min-height: 150px; background-color: #DDD; border: 1px solid #000; display: block; }
+div.container > div.menu { width: 100%; border-bottom: 1px solid #000; text-align: center; height: 40px; line-height: 40px; }
+
+table { border:1px solid #CCC; width: 100%; }
+table tr { border: 1px solid #CCC; }
+table tr td, table tr th { border: 1px solid #CCC; }
