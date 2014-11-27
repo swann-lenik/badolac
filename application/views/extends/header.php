@@ -9,6 +9,11 @@
         <?php //base_url(); ?>
         <div class="container">
             <div class="menu">
-                Menu 1 | Menu 2 | Menu 3
+                <div class="menu_list">
+                    Menu 1 | Menu 2 | Menu 3 | Menu 4
+                </div>
+                <div class="menu_connect">
+                    Bonjour <?php print($session['username']); ?>
+                </div>
             </div>
             <div class="main">

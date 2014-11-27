@@ -36,4 +36,16 @@ class Dbmanage {
 
         return $array;
     }
+    
+    public function getUserAccess($username, $password) {
+        $array = array();
+        $result = $this->db_object->db->query("SELECT a.controller, a.action, u.username, u.id_user FROM user u LEFT JOIN access a ON a.id_user = u.id_user WHERE u.username = \"" . $username . "\" AND u.password = \"" . $password . "\"");
+        foreach($result->result() as $res) {
+            $array["access"][$res->controller][] = $res->action;
+        }
+        $array["username"] = $res->username;
+        $array["userid"] = $res->id_user;
+        
+        return $array;
+    }
 }

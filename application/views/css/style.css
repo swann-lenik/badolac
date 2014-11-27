@@ -10,8 +10,11 @@ and open the template in the editor.
 
 body { background-color: #EEE; }
 
-div.container { width: 1100px; margin: auto; height: auto; min-height: 150px; background-color: #DDD; border: 1px solid #000; display: block; }
+div.container { width: 1250px; margin: auto; height: auto; min-height: 150px; background-color: #DDD; border: 1px solid #000; display: block; }
 div.container > div.menu { width: 100%; border-bottom: 1px solid #000; text-align: center; height: 40px; line-height: 40px; }
+div.container > div.menu > div.menu_list { display: inline-block; width: 66%; }
+div.container > div.menu > div.menu_connect { display: inline-block; width: 33%; text-align: right; }
+div.container > div.main { width: 1240px; margin: 5px; }
 
 table { border:1px solid #CCC; width: 100%; }
 table tr { border: 1px solid #CCC; }
