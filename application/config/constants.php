@@ -38,9 +38,9 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 
 define('URL','http://localhost/codeigniter/');
-define('IMG',URL.'assets/img/');
+define('IMG',URL.'application/images/');
 define('CSS',URL.'application/views/css/');
-define('JS',URL.'assets/js/');
+define('JS', URL.'application/javascript/');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

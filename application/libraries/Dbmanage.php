@@ -18,8 +18,40 @@ class Dbmanage {
 	public function getTableName() {
 		return $this->table_name;
 	}
+        
+        public function query($query) {
+            $this->db_object->db->query($query);
+        }
 
-    public function getStructure($table_name)
+        public function insert($table, $datas) {
+            $this->db_object->db->insert($table, $datas);
+            $this->db_object->db->select_max("id_" . $table);
+            $query = $this->db_object->db->get($table);
+            $result = $query->result();
+            return $result[0]->{"id_" . $table};
+        }
+        
+        public function delete($table, $id) {
+            $this->db_object->db->where("id_" . $table, $id);
+            $this->db_object->db->delete($table);
+            return true;
+        }
+        
+        public function update($id, $table, $field, $value) {
+            $this->db_object->db->where("id_$table", $id);
+            $this->db_object->db->select($field);
+            $query = $this->db_object->db->get($table);
+            $result = $query->result();
+            
+            if ( $result[0]->{$field} != $value ) {            
+                $this->db_object->db->where("id_" . $table, $id);
+                $this->db_object->db->update($table, array($field => $value));
+                return 1;
+            } else
+                return 0;
+        }
+
+    public function getStructure($table_name, $id = 0)
     {
         $this->setTableName($table_name);
         $array = array("columns" => array(), "datas" => array());
@@ -29,7 +61,8 @@ class Dbmanage {
                 $array['columns'][$res->Field] = $res;
         }
         
-        $result = $this->db_object->db->query("SELECT * FROM `" . $this->getTableName() . "`");
+        $query = "SELECT * FROM `" . $this->getTableName() . "`" . ((int)$id > 0 ? " WHERE id_" . $this->getTableName() . " = " . $id : "");
+        $result = $this->db_object->db->query($query);
         foreach($result->result() as $res) {
                 $array['datas'][$res->{"id_" . $table_name}] = $res;
         }        
