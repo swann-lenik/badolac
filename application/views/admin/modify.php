@@ -23,6 +23,13 @@
                         <textarea name="<?php print($field); ?>" onblur="recValue(<?php print($id); ?>, '<?php print($table); ?>', '<?php print($field); ?>', $(this).val());"><?php print($value); ?></textarea> 
                     <?php elseif ( strpos($values['columns'][$field]->Comment, "checkbox") !== false) : ?>
                         <input type="checkbox" name="<?php print($field); ?>" <?php print((int)$value == 1 ? " checked=\"checked\" " : ""); ?> value="1" onclick="recValue(<?php print($id); ?>, '<?php print($table); ?>', '<?php print($field); ?>', $(this).is(':checked'));" />
+                    <?php elseif ( strpos($values['columns'][$field]->Comment, "userlist") !== false) : ?>
+                        <select name="<?php print($field); ?>" onchange="recValue(<?php print($id); ?>, '<?php print($table); ?>', '<?php print($field); ?>', $(this).val());">
+                            <option value="0">-</option>
+                            <?php foreach($user as $id_user => $username) : ?>
+                            <option value="<?php print($id_user); ?>" <?php print($value == $id_user ? "selected=\"selected\"" : ""); ?>><?php print($username); ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     <?php else : ?>
                         <input type="text" name="<?php print($field); ?>" value="<?php print($value); ?>" placeholder="<?php print($field); ?>" onblur="recValue(<?php print($id); ?>, '<?php print($table); ?>', '<?php print($field); ?>', $(this).val());" size="10" />
                     <?php endif; ?>

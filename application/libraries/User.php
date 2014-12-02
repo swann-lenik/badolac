@@ -14,4 +14,15 @@ class User extends Dbmanage {
         
     }
     
+    public function getUsers() {
+        $array = array();
+        $this->db_object->db->select("id_user, username");
+        $this->db_object->db->where("active", 1);
+        $result = $this->db_object->db->get("user");
+        foreach($result->result() as $res)
+            $array[$res->id_user] = $res->username;
+        
+        return $array;
+    }
+    
 }

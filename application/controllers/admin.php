@@ -40,6 +40,7 @@ class Admin extends CI_Controller {
             $this->data['values'] = $this->dbmanage->getStructure($table); // exit();
 	    $this->data['table'] = $table;
             $this->data['modifiable'] = $this->tables;
+            $this->data['user'] = $this->user->getUsers();
             $this->load->view($this->router->fetch_class() . "/" . $this->router->fetch_method(), $this->data);
 	}
         
@@ -92,6 +93,7 @@ class Admin extends CI_Controller {
         }
         
         public function ajaxupdatevalue() {
+            f::v($_POST);
             echo $this->dbmanage->update($_POST['id'],$_POST['table'],$_POST['field'],$_POST['value']);
         }
         

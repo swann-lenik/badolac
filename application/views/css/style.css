@@ -14,7 +14,7 @@ div.container { width: 90%; min-width: 1250px; margin: auto; height: auto; min-h
 div.container > div.menu { width: 100%; border-bottom: 1px solid #000; text-align: center; height: 40px; line-height: 40px; }
 div.container > div.menu > div.menu_list { display: inline-block; width: 66%; }
 div.container > div.menu > div.menu_connect { display: inline-block; width: 33%; text-align: right; }
-div.container > div.main { width: 1240px; margin: 5px; }
+div.container > div.main { width: 98%; margin: 5px; }
 div.container > div.main > div.submenu { width: 100%; text-align: center; line-height: 30px; }
 div.container > div.main > div.submenu > a { margin: 0 15px; }
 div.container > div.main > div.submenu > a.active { font-weight: bold; text-decoration: overline underline; }
@@ -27,3 +27,11 @@ input.small_input { width: 100px; }
 
 div.label { width: 15%; text-align: right; padding-right: 5px; display: inline-block; }
 div.label_value { width: 82%; text-align: left; padding-left: 5px; display: inline-block; }
+
+div.post { display: block; width: 100%; margin: 20px 10px; border: 0px solid #000; }
+div.post > div.title { font-weight: bold; font-size: 20px; line-height: 30px; text-align: center; }
+div.post > div.subtitle { font-weight: bold; font-size: 15px; line-height: 20px; text-align: center; }
+div.post > div.body { width: 100%; text-align: justify; margin: 10px; }
+div.post > div.bottom > div { width: 33%; line-height: 20px; text-align: center; display: inline-block; }
+div.post > div.bottom > div.author { text-align: left; margin-left: 10px; width: 32%; }
+div.post > div.bottom > div.date_time { text-align: right; }
