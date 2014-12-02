@@ -23,19 +23,13 @@ class Admin extends CI_Controller {
         public function __construct() {
             parent::__construct();
             
-            $result = $this->dbmanage->getUserAccess("Swann","20e11e85");
-            //var_dump($result);
-            if ( empty($result) )
-                echo "Login / MDP invalide";
-            elseif ( (strpos($this->router->fetch_method(), "ajax") === false && !in_array($this->router->fetch_method(), $result["access"][$this->router->fetch_class()])) ||
-                     (strpos($this->router->fetch_method(), "ajax") === 0 && !in_array("modify", $result["access"][$this->router->fetch_class()])) ) {
-                    
-                    //&& !in_array("modify", $result["access"][$this->router->fetch_class()]) ) ) {
-                /*header('HTTP/1.0 403 Forbidden');
-                echo "Accès interdit !";*/
-                show_error("403 Forbidden access", 403);
+            //$result = $this->dbmanage->getUserAccess($this->session, $_POST);
+            if ( !isset($this->session) ||
+                 (strpos($this->router->fetch_method(), "ajax") === false && !in_array($this->router->fetch_method(), $this->session->userdata["access"][$this->router->fetch_class()])) ||
+                 (strpos($this->router->fetch_method(), "ajax") === 0 && !in_array("modify", $this->session->userdata["access"][$this->router->fetch_class()])) ) {
+                show_error("403 : Forbidden access", 403);
             } else {
-                $this->session->set_userdata(array("username" => $result['username'], "userid" => $result['userid'], 'logged_in' => true, 'access' => $result['access']));
+                //$this->session->set_userdata(array("username" => $result['username'], "userid" => $this->session->userdata['userid'], 'logged_in' => true, 'access' => $result['access']));
                 $this->data['session'] = $this->session->userdata;
             }
             $this->load = new Viewextend();
@@ -46,7 +40,7 @@ class Admin extends CI_Controller {
             $this->data['values'] = $this->dbmanage->getStructure($table); // exit();
 	    $this->data['table'] = $table;
             $this->data['modifiable'] = $this->tables;
-            $this->load->view("admin/" . $this->router->fetch_method(), $this->data);
+            $this->load->view($this->router->fetch_class() . "/" . $this->router->fetch_method(), $this->data);
 	}
         
         public function index() {
@@ -56,11 +50,25 @@ class Admin extends CI_Controller {
         public function personal() {
             $this->data['user'] = $this->user->getUserInfos($this->session->userdata('userid'));
             $this->data['contact'] = $this->user->getContactInfos($this->session->userdata('userid'));
-            $this->load->view("admin/" . $this->router->fetch_method(), $this->data);
+            $this->data['table']['user'] = $this->dbmanage->getStructure('user');
+            $this->data['table']['contact'] = $this->dbmanage->getStructure('contact');
+            $this->load->view($this->router->fetch_class() . "/" . $this->router->fetch_method(), $this->data);
         }
         
         public function ajaxremoveline() {
             $this->dbmanage->delete($_POST['table'], $_POST['id']);
+        }
+        
+        public function access() {
+            $a = $this->dbmanage->getPagesAccess();
+            $this->data['pages'] = $a["pages"];
+            unset($a['pages']);
+            $this->data['users'] = $a;
+            $this->load->view($this->router->fetch_class() . "/" . $this->router->fetch_method(), $this->data);
+        }
+
+        public function create() {
+            $this->load->view($this->router->fetch_class() . "/" . $this->router->fetch_method(), $this->data);
         }
         
         public function ajaxaddline() {
@@ -79,7 +87,7 @@ class Admin extends CI_Controller {
             $this->data['id'] = $id;
             $this->data['table'] = $_POST['table'];
             
-            $this->load->view("admin/" . $this->router->fetch_method(), $this->data, false, true);
+            $this->load->view($this->router->fetch_class() . "/" . $this->router->fetch_method(), $this->data, false, true);
 
         }
         
@@ -87,5 +95,41 @@ class Admin extends CI_Controller {
             echo $this->dbmanage->update($_POST['id'],$_POST['table'],$_POST['field'],$_POST['value']);
         }
         
+        public function ajaxmodifypersonalinfos() {
+            parse_str($_POST['datas'], $result);
+            $array = array("ranking" => $result['simple'] . " / " . $result['double'] . " / " . $result['mixte']);
+            
+            foreach($result as $field => $value) {
+                if ( in_array($field, array("simple","double","mixte")))
+                    continue;
+                if ( $field == "birthdate" ) {
+                    $xpl = explode("/", $value);
+                    $array['birthdate'] = $xpl[2] . "-" . $xpl[1] . "-" . $xpl[0] . " 00:00:00";
+                } else {
+                    $array[$field] = $value;
+                }
+            }
+            
+            echo $this->dbmanage->update($_POST['id_contact'], $_POST['table'], $array);
+        }
+        
+        public function ajaxmodifypassword() {
+            $state = $this->dbmanage->update($_POST['id_user'], $_POST['table'], "password", f::getPasswordHash($_POST['newpass']));
+            if ( $state == 1 )
+                $this->session->sess_destroy();
+            
+            echo $state;
+        }
+        
+        public function ajaxgrantaccess() {
+            if ( $_POST['is_checked'] === "true" ) {
+                $xpl = explode("/", $_POST['action']);
+                $array = array("id_user" => $_POST['id_user'], "controller" => $xpl[0], "action" => $xpl[1]);
+                //f::v($array);
+                $this->dbmanage->insert("access", $array, false);
+            } else {
+                $this->dbmanage->delete_access($_POST['id_user'], $_POST['action']);
+            }
+        }
         
 }

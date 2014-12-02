@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Front extends CI_Controller {
+class First extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -21,20 +21,24 @@ class Front extends CI_Controller {
         public function __construct() {
             parent::__construct();
             
-            $result = $this->dbmanage->getUserInfos("Swann","20e11e85");
+            /*f::v("coucou");
+            f::v($_POST);
+            exit();*/
+            
+            /*$result = $this->dbmanage->getUserInfos("Swann","20e11e85");
             //var_dump($result);
             if ( empty($result) )
                 echo "Login / MDP invalide";
             elseif ( !in_array($this->router->fetch_method(), $result[key($result)][$this->router->fetch_class()]) ) {
                 /*header('HTTP/1.0 403 Forbidden');
-                echo "Accès interdit !";*/
+                echo "Accès interdit !";* /
                 show_error("403 Forbidden access", 403);
             } else {
                 $this->session->set_userdata(array("username" => key($result), 'logged_in' => true, 'access' => $result));
                 $this->data['session'] = $this->session->userdata;
                 /*var_dump($this->session->userdata);
-                exit();*/
-            }
+                exit();* /
+            }*/
             $this->load = new Viewextend();
 
             //exit();

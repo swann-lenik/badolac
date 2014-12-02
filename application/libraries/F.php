@@ -19,4 +19,8 @@ class F {
         print_r($str);
     }
     
+    public static function getPasswordHash($password) {
+        return md5(SEPARATOR . SALTED_WITH . SEPARATOR . $password . SEPARATOR);
+    }
+    
 }

@@ -1,4 +1,4 @@
-    FOOTER
+    
             </div>
         </div>
     </body>

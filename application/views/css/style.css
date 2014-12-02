@@ -10,7 +10,7 @@ and open the template in the editor.
 
 body { background-color: #EEE; }
 
-div.container { width: 1250px; margin: auto; height: auto; min-height: 150px; background-color: #DDD; border: 1px solid #000; display: block; }
+div.container { width: 90%; min-width: 1250px; margin: auto; height: auto; min-height: 150px; background-color: #DDD; border: 1px solid #000; display: block; }
 div.container > div.menu { width: 100%; border-bottom: 1px solid #000; text-align: center; height: 40px; line-height: 40px; }
 div.container > div.menu > div.menu_list { display: inline-block; width: 66%; }
 div.container > div.menu > div.menu_connect { display: inline-block; width: 33%; text-align: right; }
@@ -22,3 +22,8 @@ div.container > div.main > div.submenu > a.active { font-weight: bold; text-deco
 table { border:1px solid #CCC; width: 100%; }
 table tr { border: 1px solid #CCC; }
 table tr td, table tr th { border: 1px solid #CCC; }
+
+input.small_input { width: 100px; }
+
+div.label { width: 15%; text-align: right; padding-right: 5px; display: inline-block; }
+div.label_value { width: 82%; text-align: left; padding-left: 5px; display: inline-block; }

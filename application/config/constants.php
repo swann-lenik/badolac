@@ -42,5 +42,8 @@ define('IMG',URL.'application/images/');
 define('CSS',URL.'application/views/css/');
 define('JS', URL.'application/javascript/');
 
+define('SALTED_WITH', 'BADOLAC_2014');
+define('SEPARATOR', '::');
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

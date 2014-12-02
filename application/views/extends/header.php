@@ -14,7 +14,16 @@
                     Menu 1 | Menu 2 | Menu 3 | Menu 4
                 </div>
                 <div class="menu_connect">
-                    Bonjour <?php print($session['username']); ?>
+                    <?php if ( !empty($session['username']) ) : ?>
+                    Bonjour <?php print($session['username']); ?> - <a href="<?php print(URL); ?>index.php/admin/index">Espace perso</a> <a href="<?php print(URL); ?>index.php/index/disconnect">Déconnexion</a>
+                    <?php else : ?>
+                    <form method="POST" action="<?php print(URL); ?>index.php/index/connect">
+                        <input type="text" name="username" class="small_input" value="" placeholder="Identifiant" />
+                        <input type="password" name="userpass" class="small_input" value="" placeholder="Mot de passe" />
+                        <input type="submit" name="submit" value="Se connecter" />
+                        <input type="button" name="button" value="S'inscrire" onclick="createAccount('<?php print(URL); ?>')" />
+                    </form>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="main">
