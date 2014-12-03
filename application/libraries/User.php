@@ -25,4 +25,15 @@ class User extends Dbmanage {
         return $array;
     }
     
+    public function getTrainers() {
+        $array = array();
+        $this->db_object->db->where("active", 1);
+        $result = $this->db_object->db->get("trainer");
+        foreach($result->result() as $res)
+            $array[$res->id_trainer] = $res;
+        
+        return $array;
+        
+    }
+    
 }

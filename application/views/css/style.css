@@ -11,9 +11,12 @@ and open the template in the editor.
 body { background-color: #EEE; }
 
 div.container { width: 90%; min-width: 1250px; margin: auto; height: auto; min-height: 150px; background-color: #DDD; border: 1px solid #000; display: block; }
-div.container > div.menu { width: 100%; border-bottom: 1px solid #000; text-align: center; height: 40px; line-height: 40px; }
-div.container > div.menu > div.menu_list { display: inline-block; width: 66%; }
-div.container > div.menu > div.menu_connect { display: inline-block; width: 33%; text-align: right; }
+div.container > div.menu { width: 100%; border-bottom: 1px solid #000; text-align: center; height: 40px; line-height: 34px; }
+div.container > div.menu > div.menu_list { display: block; float: left; width: 66%; }
+div.container > div.menu > div.menu_list > div.menu_item,
+div.container > div.menu > div.menu_list > div.submenu_item { width: auto; margin: 0 10px; display: inline-block; }
+div.container > div.menu > div.menu_list > div.submenu_item { display: none; }
+div.container > div.menu > div.menu_connect { display: block; width: 33%; text-align: right; float: right; margin: 0 5px 0 0; float: right; }
 div.container > div.main { width: 98%; margin: 5px; }
 div.container > div.main > div.submenu { width: 100%; text-align: center; line-height: 30px; }
 div.container > div.main > div.submenu > a { margin: 0 15px; }
@@ -35,3 +38,20 @@ div.post > div.body { width: 100%; text-align: justify; margin: 10px; }
 div.post > div.bottom > div { width: 33%; line-height: 20px; text-align: center; display: inline-block; }
 div.post > div.bottom > div.author { text-align: left; margin-left: 10px; width: 32%; }
 div.post > div.bottom > div.date_time { text-align: right; }
+
+div.stage { display: block; width: 100%; margin: 20px 10px; border: 0px solid #000; }
+div.stage > div.title { font-weight: bold; font-size: 20px; line-height: 30px; text-align: center; }
+div.stage > div.title > div.subscribe { width: auto; display: block; float: right; }
+div.stage > div.body { width: 100%; text-align: justify; margin: 10px; }
+div.stage > div.bottom > div { width: 33%; line-height: 20px; text-align: center; display: inline-block; }
+div.stage > div.bottom > div.date_time { text-align: center; }
+
+#adminFormAddLineTable textarea { width: 400px; height: 100px; }
+
+.ui-menu { width: 100%; font-size: 12px; min-height: 22px; } /* définit la hauteur minimale du menu (dépendante de la valeur de font-size) */
+ ul#menu { width: 100%; display: inline-block; }
+ ul#menu>li { max-width: 200px; min-width: 150px; float: left; }
+.ui-widget-content { background: none; border: 0;}
+ ul > li > ul.ui-widget-content { background: #ffffff url("images/ui-bg_flat_75_ffffff_40x100.png") 50% 50% repeat-x; }
+ 
+ div.reminder { margin: 10px; width: 100%; text-align: center; }

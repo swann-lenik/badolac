@@ -162,4 +162,17 @@ class Dbmanage {
         } else
             return false;
     }
+    
+    public function getParentMenu() {
+        $array = array();
+        @$array[0]->id_menu = 0;
+        $array[0]->label = "-";
+        $this->db_object->db->where("id_parent", 0);
+        $result = $this->db_object->db->get("menu");
+        foreach($result->result() as $r) {
+            $array[$r->id_menu] = $r;
+        }
+        return $array;
+        
+    }
 }

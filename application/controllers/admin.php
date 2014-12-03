@@ -18,7 +18,7 @@ class Admin extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
     
-         protected $tables = array("comment","contact","page","post","stage","trainer");
+         protected $tables = array("comment","contact","page","post","stage","trainer", "menu");
     
         public function __construct() {
             parent::__construct();
@@ -41,6 +41,7 @@ class Admin extends CI_Controller {
 	    $this->data['table'] = $table;
             $this->data['modifiable'] = $this->tables;
             $this->data['user'] = $this->user->getUsers();
+            $this->data['parent'] = $this->dbmanage->getParentMenu();
             $this->load->view($this->router->fetch_class() . "/" . $this->router->fetch_method(), $this->data);
 	}
         

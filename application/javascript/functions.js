@@ -121,3 +121,9 @@ function newContact(admin) {
 function createAccount(url) {
     document.location = url + "index.php/index/create";
 }
+
+function openSubmenu(id) {
+    $("div.submenu_item").hide();
+    $("div.submenu_item.submenu_"+id).css('display', 'inline-block');
+    
+}

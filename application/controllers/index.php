@@ -13,6 +13,7 @@ class Index extends CI_Controller {
     
     public function index() {
         $this->data['news'] = $this->news->getPosts();
+        $this->data['menu'] = f::getMenu();
         $this->load->view($this->router->fetch_class() . "/" . $this->router->fetch_method(), $this->data);
     }
     

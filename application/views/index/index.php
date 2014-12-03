@@ -14,8 +14,3 @@
 </div>
 
 <?php endforeach; ?>
-
-
-<pre>
-<?php //f::v($news); ?>
-</pre>
