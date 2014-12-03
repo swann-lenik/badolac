@@ -118,12 +118,26 @@ function newContact(admin) {
     }
 }
 
-function createAccount(url) {
-    document.location = url + "index.php/index/create";
+function subscribeStage(id_stage) {
+    //if ( confirm("Confirmez-vous vouloir vous inscrire à ce stage ?") ) {
+        $.post("/codeigniter/index.php/stage/ajaxsubscribe", {
+            id_stage: id_stage
+        }, function(data) {
+            $("div.alert").fadeIn(500).html("Inscription effectuée").delay(2000).fadeOut(500);
+        });            
+    //}
 }
 
-function openSubmenu(id) {
-    $("div.submenu_item").hide();
-    $("div.submenu_item.submenu_"+id).css('display', 'inline-block');
-    
+function unsubscribeStage(id_stage) {
+    //if ( confirm("Confirmez-vous vouloir vous inscrire à ce stage ?") ) {
+        $.post("/codeigniter/index.php/stage/ajaxunsubscribe", {
+            id_stage: id_stage
+        }, function(data) {
+            $("div.alert").fadeIn(500).html("Désinscription effectuée").delay(2000).fadeOut(500);
+        });            
+    //}
+}
+
+function createAccount(url) {
+    document.location = url + "index.php/index/create";
 }

@@ -1,10 +1,14 @@
+<h1>Nos stages</h1>
+
 <?php foreach($stages as $id_stage => $s) : ?>
 <?php $limit = new DateTime($s->date_limit_subscription); ?>
 <div class="stage">
     <div class="title">
-        <?php print($s->title); ?>
-        <?php if ( date("Y-m-d") <= $limit->format("Y-m-d") && $this->session->userdata('logged_in') === true ) : ?>
-        <div class='subscribe'><a href="<?php print(URL); ?>index.php/stage/subscribe/<?php print($id_stage); ?>">S'inscrire au stage</a></div>
+        <?php print($s->title . "-" . $s->id_stage); ?>
+        <?php if ( date("Y-m-d") <= $limit->format("Y-m-d") && $this->session->userdata('logged_in') === true && !in_array($id_stage, $subs) ) : ?>
+        <div class='subscribe'><a href="#" onclick="subscribeStage(<?php print($id_stage); ?>);">S'inscrire au stage</a></div>
+        <?php elseif ( in_array($id_stage, $subs) ) : ?>
+        <div class='subscribe'><a href="#" onclick="unsubscribeStage(<?php print($id_stage); ?>);">Se désinscrire du stage</a></div>
         <?php endif; ?>
     </div>
     <div class="body"><?php print($s->body); ?></div>

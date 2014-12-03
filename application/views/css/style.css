@@ -55,3 +55,7 @@ div.stage > div.bottom > div.date_time { text-align: center; }
  ul > li > ul.ui-widget-content { background: #ffffff url("images/ui-bg_flat_75_ffffff_40x100.png") 50% 50% repeat-x; }
  
  div.reminder { margin: 10px; width: 100%; text-align: center; }
+ 
+ div.trainer { width: 100%; margin: 10px; }
+ div.trainer > div.name { text-align: center; width: 100%; }
+ div.trainer > div.desc { text-align: justify; width: 100%; }

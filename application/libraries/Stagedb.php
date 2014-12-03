@@ -24,4 +24,16 @@ class Stagedb extends Dbmanage {
         return $array;
     }
     
+    public function getSubscriptions($id_user) {
+        $array = array();
+        $this->db_object->db->select("p.id_stage");
+        $this->db_object->db->join("participe p", "p.id_contact = u.id_contact", "left");
+        $this->db_object->db->where("u.id_user", $id_user);
+        $result = $this->db_object->db->get("user u");
+        foreach($result->result() as $r)
+            $array[$r->id_stage] = $r->id_stage;
+        
+        return $array;
+    }
+    
 }

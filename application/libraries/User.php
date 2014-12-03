@@ -36,4 +36,18 @@ class User extends Dbmanage {
         
     }
     
+    public function getContactID($id_user) {
+        $array = array();
+        $this->db_object->db->select("id_contact");
+        $this->db_object->db->where("id_user", $id_user);
+        $result = $this->db_object->db->get("user");
+        foreach($result->result() as $res) {
+            f::v($res);
+            $array[$id_user] = $res->id_contact;
+        }
+        f::v($array);
+        return $array[$id_user];
+        
+    }
+    
 }
