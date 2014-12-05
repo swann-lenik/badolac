@@ -47,6 +47,7 @@ div.stage > div.bottom > div { width: 33%; line-height: 20px; text-align: center
 div.stage > div.bottom > div.date_time { text-align: center; }
 
 #adminFormAddLineTable textarea { width: 400px; height: 100px; }
+#liaisonSanitaireForm textarea { width: 700px; height: 150px; }
 
 .ui-menu { width: 100%; font-size: 12px; min-height: 22px; } /* définit la hauteur minimale du menu (dépendante de la valeur de font-size) */
  ul#menu { width: 100%; display: inline-block; }
@@ -59,3 +60,6 @@ div.stage > div.bottom > div.date_time { text-align: center; }
  div.trainer { width: 100%; margin: 10px; }
  div.trainer > div.name { text-align: center; width: 100%; }
  div.trainer > div.desc { text-align: justify; width: 100%; }
+ 
+ div.subscribe { width: 100%; margin: 5px; border: 1px solid #000; display: inline-block; }
+ div.step2, div.step3, div.step1 > div.step1_contact { display:inline-block; }

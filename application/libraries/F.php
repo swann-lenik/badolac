@@ -48,4 +48,8 @@ class F {
         return $menu;
     }
     
+    public static function getUrl($url) {
+        print(URL . "index.php/" . $url);
+    }
+    
 }

@@ -1,5 +1,6 @@
 <?php $menu = f::getMenu(); ?>
 <html>
+    <meta charset="utf-8" />
     <head>
         <title>BADOLAC</title>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -30,9 +31,9 @@
                 </div>
                 <div class="menu_connect">
                     <?php if ( !empty($session['username']) ) : ?>
-                    Bonjour <?php print($session['username']); ?> - <a href="<?php print(URL); ?>index.php/admin/index">Espace perso</a> <a href="<?php print(URL); ?>index.php/index/disconnect">Déconnexion</a>
+                    Bonjour <?php print($session['username']); ?> - <a href="<?php f::getUrl("admin"); ?>">Espace perso</a> <a href="<?php f::getUrl("index/disconnect"); ?>">Déconnexion</a>
                     <?php else : ?>
-                    <form method="POST" action="<?php print(URL); ?>index.php/index/connect">
+                    <form method="POST" action="<?php f::getUrl("index/connect"); ?>">
                         <input type="text" name="username" class="small_input" value="" placeholder="Identifiant" />
                         <input type="password" name="userpass" class="small_input" value="" placeholder="Mot de passe" />
                         <input type="submit" name="submit" value="Se connecter" />

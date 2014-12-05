@@ -50,4 +50,20 @@ class User extends Dbmanage {
         
     }
     
+    public function getContact($id_user) {
+        $this->db_object->db->where("u.id_user", $id_user);
+        $this->db_object->db->join("contact c", "c.id_contact = u.id_contact", "left");
+        $this->db_object->db->select("c.*");
+        $result = $this->db_object->db->get("user u");
+        $r = $result->result();
+        return $r[0];
+    }
+    
+    public function getAge($id_user) {
+        $result = $this->db_object->db->query("SELECT YEAR(CURRENT_TIMESTAMP) - YEAR(c.birthdate) - (DATE_FORMAT(CURRENT_TIMESTAMP, '%m%d') < DATE_FORMAT(c.birthdate, '%m%d')) as diff_years FROM `user` u LEFT JOIN contact c ON c.id_contact = u.id_contact WHERE u.id_user = $id_user");
+        $r = $result->result();
+        return $r[0]->diff_years;
+        
+    }
+    
 }

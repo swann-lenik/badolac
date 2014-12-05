@@ -118,26 +118,29 @@ function newContact(admin) {
     }
 }
 
-function subscribeStage(id_stage) {
-    //if ( confirm("Confirmez-vous vouloir vous inscrire à ce stage ?") ) {
-        $.post("/codeigniter/index.php/stage/ajaxsubscribe", {
-            id_stage: id_stage
-        }, function(data) {
-            $("div.alert").fadeIn(500).html("Inscription effectuée").delay(2000).fadeOut(500);
-        });            
-    //}
-}
-
 function unsubscribeStage(id_stage) {
-    //if ( confirm("Confirmez-vous vouloir vous inscrire à ce stage ?") ) {
+    if ( confirm("Confirmez-vous vouloir vous désinscrire à ce stage ?") ) {
         $.post("/codeigniter/index.php/stage/ajaxunsubscribe", {
             id_stage: id_stage
         }, function(data) {
             $("div.alert").fadeIn(500).html("Désinscription effectuée").delay(2000).fadeOut(500);
         });            
-    //}
+    }
 }
 
 function createAccount(url) {
     document.location = url + "index.php/index/create";
+}
+
+function insertSanitaire(id_stage, is_minor) {
+    var datas = "";
+    if ( is_minor == 1 )
+        datas = $("#liaisonSanitaireForm").serialize();
+    $.post('/codeigniter/index.php/stage/ajaxsubscribe', {
+        id_stage: id_stage,
+        is_minor: is_minor,
+        datas: datas
+    }, function(data) {
+        $("div.alert").show().html(data);
+    });
 }

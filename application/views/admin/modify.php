@@ -1,6 +1,6 @@
 <div class='submenu'>
     <?php foreach($modifiable as $t) : ?>
-    <a href="/codeigniter/index.php/admin/modify/<?php print($t); ?>" <?php print($table == $t ? "class='active'" : ""); ?>>Table <?php print($t); ?></a>
+    <a href="<?php f::getUrl("/admin/modify/$t"); ?>" <?php print($table == $t ? "class='active'" : ""); ?>>Table <?php print($t); ?></a>
     <?php endforeach; ?>
 </div>
 

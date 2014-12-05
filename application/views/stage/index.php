@@ -6,7 +6,7 @@
     <div class="title">
         <?php print($s->title . "-" . $s->id_stage); ?>
         <?php if ( date("Y-m-d") <= $limit->format("Y-m-d") && $this->session->userdata('logged_in') === true && !in_array($id_stage, $subs) ) : ?>
-        <div class='subscribe'><a href="#" onclick="subscribeStage(<?php print($id_stage); ?>);">S'inscrire au stage</a></div>
+        <div class='subscribe'><a href="<?php f::getUrl("stage/subscribe/" . $s->id_stage); ?>">S'inscrire au stage</a></div>
         <?php elseif ( in_array($id_stage, $subs) ) : ?>
         <div class='subscribe'><a href="#" onclick="unsubscribeStage(<?php print($id_stage); ?>);">Se désinscrire du stage</a></div>
         <?php endif; ?>
