@@ -4,7 +4,7 @@ var chiffre = new RegExp("[0-9]+", "");
 
 function recValue(id, table, field, value) {
 //    $('div.alert').html(attr1 + attr2 + attr3);
-    $.post("/codeigniter/index.php/admin/ajaxupdatevalue", {
+    $.post("/badolac/badolac/index.php/admin/ajaxupdatevalue", {
         id: id,
         table: table,
         field: field,
@@ -17,7 +17,7 @@ function recValue(id, table, field, value) {
 }
 
 function recNewValue(table, userid) {
-    $.post("/codeigniter/index.php/admin/ajaxaddline", {
+    $.post("/badolac/badolac/index.php/admin/ajaxaddline", {
         table: table,
         userid: userid,
         datas: $("form#adminFormAddLine").serialize()
@@ -33,7 +33,7 @@ function recNewValue(table, userid) {
 
 function delValue(table, id) {
     if ( confirm("Supprimer l'élément " + id + " de la table " + table + " ?") ) {
-        $.post("/codeigniter/index.php/admin/ajaxremoveline", {
+        $.post("/badolac/badolac/index.php/admin/ajaxremoveline", {
             table: table,
             id: id
         }, function(data) {
@@ -45,7 +45,7 @@ function delValue(table, id) {
 }
 
 function recPersonalInfos(id_contact) {
-    $.post("/codeigniter/index.php/admin/ajaxmodifypersonalinfos", {
+    $.post("/badolac/badolac/index.php/admin/ajaxmodifypersonalinfos", {
         id_contact: id_contact,
         table: 'contact',
         datas: $("#personalInfosModif").serialize()
@@ -69,7 +69,7 @@ function modifyPersonalPassword(id_user) {
         $("#accessInfosModif").find("#new_password_1").val("");
         $("#accessInfosModif").find("#new_password_2").val("");
     } else {
-        $.post("/codeigniter/index.php/admin/ajaxmodifypassword", {
+        $.post("/badolac/badolac/index.php/admin/ajaxmodifypassword", {
             id_user: id_user,
             table: 'user',
             newpass: $("#accessInfosModif").find("#new_password_1").val()
@@ -77,7 +77,7 @@ function modifyPersonalPassword(id_user) {
             $("div.alert").html(data);
             if ( data == 1 ) {
                 $("div.alert").fadeIn(500).html("Mot de passe modifié").delay(2000).fadeOut(500);
-                document.location = "/codeigniter/index.php/index";
+                document.location = "/badolac/badolac/index.php/index";
             }
     })
         
@@ -85,7 +85,7 @@ function modifyPersonalPassword(id_user) {
 }
 
 function grantAccess(id_user, action, is_checked) {
-    $.post("/codeigniter/index.php/admin/ajaxgrantaccess", {
+    $.post("/badolac/badolac/index.php/admin/ajaxgrantaccess", {
         id_user: id_user,
         action: action,
         is_checked: is_checked
@@ -108,7 +108,7 @@ function newContact(admin) {
         $("#accessInfosCreate").find("#new_password_2").val("");
     } else {
 
-        $.post("/codeigniter/index.php/index/ajaxnewcontact", {
+        $.post("/badolac/badolac/index.php/index/ajaxnewcontact", {
             datas: $("form#accessInfosCreate").serialize(),
             admin: admin
         }, function(data) {
@@ -120,7 +120,7 @@ function newContact(admin) {
 
 function unsubscribeStage(id_stage) {
     if ( confirm("Confirmez-vous vouloir vous désinscrire à ce stage ?") ) {
-        $.post("/codeigniter/index.php/stage/ajaxunsubscribe", {
+        $.post("/badolac/badolac/index.php/stage/ajaxunsubscribe", {
             id_stage: id_stage
         }, function(data) {
             $("div.alert").fadeIn(500).html("Désinscription effectuée").delay(2000).fadeOut(500);
@@ -129,14 +129,14 @@ function unsubscribeStage(id_stage) {
 }
 
 function createAccount(url) {
-    document.location = url + "index.php/index/create";
+    document.location = url + "index/create";
 }
 
 function insertSanitaire(id_stage, is_minor) {
     var datas = "";
     if ( is_minor == 1 )
         datas = $("#liaisonSanitaireForm").serialize();
-    $.post('/codeigniter/index.php/stage/ajaxsubscribe', {
+    $.post('/badolac/badolac/index.php/stage/ajaxsubscribe', {
         id_stage: id_stage,
         is_minor: is_minor,
         datas: datas

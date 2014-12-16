@@ -5,13 +5,17 @@
         <title>BADOLAC</title>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-        <script src="<?php print(JS . "functions.js"); ?>"></script>
+        <script type="text/javasript">
+        <?php include(JS . "functions.js"); ?>
+        </script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-        <link rel="stylesheet" type="text/css" href="<?php print(CSS . "style.css"); ?>" />
+        <style type="text/css">
+        <?php include(CSS . "style.css"); ?>
+        </style>
 
     </head>
     <body>
-        <?php //base_url(); ?>
+        <?php //f::getUrl("test"); ?>
         <div class="container">
             <div class="menu">
                 <div class="menu_list">
@@ -43,4 +47,4 @@
                 </div>
             </div>
             <div class="main">
-                <div class="alert"></div>
+                <div class="alert"><?php //f::v(URL); ?></div>

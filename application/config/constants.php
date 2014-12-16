@@ -37,10 +37,10 @@ define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 
-define('URL','http://localhost/codeigniter/');
-define('IMG',URL.'application/images/');
-define('CSS',URL.'application/views/css/');
-define('JS', URL.'application/javascript/');
+define('URL',"http://" . $_SERVER['HTTP_HOST'] . "/index.php");
+define('IMG',dirname(dirname(__FILE__)) . '/images/');
+define('CSS',dirname(dirname(__FILE__)) . '/views/css/');
+define('JS', dirname(dirname(__FILE__)) . '/javascript/');
 
 define('SALTED_WITH', 'BADOLAC_2014');
 define('SEPARATOR', '::');

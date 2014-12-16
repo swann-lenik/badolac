@@ -104,19 +104,20 @@ class Dbmanage {
          */
         $this->db_object->db->select("username");
         $this->db_object->db->where("username", $access['username']);
-        $result = $this->db_object->db->get("user");
-        if ( empty($result->result()) ) {
+        $result = $this->db_object->db->get("user")->result();
+        if ( empty($result) ) {
             return array("status" => 0, "message" => "Identifiant inconnu");
         }
         
         /*
          * MOT DE PASSE ERRONE
          */
+        
         $this->db_object->db->select("username");
         $this->db_object->db->where("username", $access['username']);
         $this->db_object->db->where("password", $access['userpass']);
-        $result = $this->db_object->db->get("user");
-        if ( empty($result->result()) ) {
+        $result = $this->db_object->db->get("user")->result();
+        if ( empty($result) ) {
             return array("status" => 0, "message" => "Mot de passe incorrect pour cet identifiant");
         }
         
@@ -126,8 +127,8 @@ class Dbmanage {
         $this->db_object->db->select("active");
         $this->db_object->db->where("username", $access['username']);
         $this->db_object->db->where("password", $access['userpass']);
-        $result = $this->db_object->db->get("user");
-        if ( empty($result->result()) ) {
+        $result = $this->db_object->db->get("user")->result();
+        if ( empty($result) ) {
             return array("status" => 0, "message" => "Compte inactif ! Un mail vous a été envoyé lors de votre inscription contenant un lien d'activation. Merci de cliquer dessus !");
         }
         
@@ -154,9 +155,9 @@ class Dbmanage {
     public function activate($id, $token) {
         $this->db_object->db->where("id_user", $id);
         $this->db_object->db->where("password", $token);
-        $result = $this->db_object->db->get("user");
+        $result = $this->db_object->db->get("user")->result();
         
-        if ( !empty($result->result()) ) {
+        if ( !empty($result) ) {
             $this->update($id, "user", "active", 1);
             return true;
         } else

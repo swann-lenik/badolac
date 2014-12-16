@@ -34,7 +34,7 @@ function positionnerSousMenu(position, elements) {
 };
 
 $("li.menu_item_clickable").click(function(event) {
-    document.location = "<?php print(URL); ?>index.php" + $(this).attr('data-link');
+    document.location = "<?php print(URL); ?>" + $(this).attr('data-link');
     event.stopPropagation();
 });
 </script>

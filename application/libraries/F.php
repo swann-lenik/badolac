@@ -49,7 +49,8 @@ class F {
     }
     
     public static function getUrl($url) {
-        print(URL . "index.php/" . $url);
+        //f::v(substr(URL,0,strpos(URL, "index.php")+9) . "/" . $url);
+        print(substr(URL,0,strpos(URL, "index.php")+9) . "/" . $url);
     }
     
 }

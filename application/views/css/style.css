@@ -51,7 +51,7 @@ div.stage > div.bottom > div.date_time { text-align: center; }
 
 .ui-menu { width: 100%; font-size: 12px; min-height: 22px; } /* définit la hauteur minimale du menu (dépendante de la valeur de font-size) */
  ul#menu { width: 100%; display: inline-block; }
- ul#menu>li { max-width: 200px; min-width: 150px; float: left; }
+ ul#menu>li { max-width: 200px; min-width: 120px; float: left; }
 .ui-widget-content { background: none; border: 0;}
  ul > li > ul.ui-widget-content { background: #ffffff url("images/ui-bg_flat_75_ffffff_40x100.png") 50% 50% repeat-x; }
  
